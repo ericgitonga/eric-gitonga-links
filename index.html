@@ -1,0 +1,388 @@
+<title>Eric Gitonga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f2f1ec;
+    --bg-raised: #ffffff;
+    --ink: #1b1d22;
+    --ink-soft: #5a5f6a;
+    --ink-faint: #8b8f97;
+    --line: #d9d6cc;
+    --accent: #a85a1e;
+    --accent-ink: #ffffff;
+    --focus: #2b6cb0;
+    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --font-body: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15161a;
+      --bg-raised: #1d1f24;
+      --ink: #ece9e2;
+      --ink-soft: #a5a9b2;
+      --ink-faint: #6b6f78;
+      --line: #33353c;
+      --accent: #dd9152;
+      --accent-ink: #191008;
+      --focus: #7cb3f0;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #15161a;
+    --bg-raised: #1d1f24;
+    --ink: #ece9e2;
+    --ink-soft: #a5a9b2;
+    --ink-faint: #6b6f78;
+    --line: #33353c;
+    --accent: #dd9152;
+    --accent-ink: #191008;
+    --focus: #7cb3f0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .page {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 1.5rem) 3.5rem;
+  }
+
+  header.hero {
+    margin-bottom: clamp(2.25rem, 5vw, 3rem);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.85rem;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.1rem, 7vw, 2.9rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.6rem;
+    text-wrap: balance;
+  }
+
+  .tagline {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 34em;
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .locale {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    margin-top: 1.1rem;
+  }
+
+  .locale::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+  }
+
+  .velocity {
+    margin-top: clamp(1.5rem, 4vw, 2rem);
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    background: var(--bg-raised);
+  }
+
+  .velocity-label {
+    margin: 0 0 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .velocity-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .velocity-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+  }
+
+  .v-num {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .v-unit {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .v-what {
+    margin-left: 0.15rem;
+  }
+
+  section.group {
+    margin-top: clamp(2rem, 5vw, 2.75rem);
+  }
+
+  .group-label {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 0.9rem;
+  }
+
+  .group-label .count {
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .group-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .entries {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .entry {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg-raised);
+  }
+
+  .entry a {
+    display: block;
+    padding: 1rem 1.1rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .entry-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .entry-name {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+
+  .entry-name .slash {
+    color: var(--accent);
+  }
+
+  .entry-arrow {
+    font-family: var(--font-mono);
+    color: var(--ink-faint);
+    transition: transform 0.15s ease, color 0.15s ease;
+    flex: none;
+  }
+
+  .entry a:hover .entry-arrow,
+  .entry a:focus-visible .entry-arrow {
+    transform: translateX(3px);
+    color: var(--accent);
+  }
+
+  .entry a:hover,
+  .entry a:focus-visible {
+    border-color: var(--accent);
+  }
+
+  .entry {
+    transition: border-color 0.15s ease;
+  }
+
+  .entry-desc {
+    margin: 0.4rem 0 0;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  footer {
+    margin-top: clamp(2.5rem, 6vw, 3.5rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+
+  footer a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  footer a:hover,
+  footer a:focus-visible {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+</style>
+
+<div class="page">
+  <header class="hero">
+    <p class="eyebrow">Index — all current work</p>
+    <h1>Eric Gitonga</h1>
+    <p class="tagline">I build custom software and AI-driven products for real people and organisations, and shoot documentary, portrait, event and nature photography.</p>
+    <p class="locale">Nairobi, Kenya</p>
+
+    <div class="velocity">
+      <p class="velocity-label">Idea → shipped, on record</p>
+      <ul class="velocity-list">
+        <li><span class="v-num">9</span><span class="v-unit">days</span><span class="v-what">family-doc-man, first commit to working build</span></li>
+        <li><span class="v-num">10</span><span class="v-unit">days</span><span class="v-what">dudus-app, first commit to live app</span></li>
+        <li><span class="v-num">4</span><span class="v-unit">weeks</span><span class="v-what">umoja-voices, first commit to real congregations using it</span></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="group" aria-labelledby="software-label">
+    <p class="group-label" id="software-label">Software &amp; AI products <span class="count">05</span></p>
+    <ul class="entries">
+      <li class="entry">
+        <a href="https://career-transition-psi.vercel.app" target="_blank" rel="noopener">
+          <div class="entry-top">
+            <span class="entry-name"><span class="slash">/</span>career-transition</span>
+            <span class="entry-arrow">↗</span>
+          </div>
+          <p class="entry-desc">An AI-driven career planning service — tested with real clients since July 2026.</p>
+        </a>
+      </li>
+      <li class="entry">
+        <a href="https://ahs-aghs-hike.vercel.app" target="_blank" rel="noopener">
+          <div class="entry-top">
+            <span class="entry-name"><span class="slash">/</span>busherian-hike</span>
+            <span class="entry-arrow">↗</span>
+          </div>
+          <p class="entry-desc">Event and M-Pesa payments platform built for the AHS/AGHS alumni hike.</p>
+        </a>
+      </li>
+      <li class="entry">
+        <a href="https://umoja-voices.vercel.app" target="_blank" rel="noopener">
+          <div class="entry-top">
+            <span class="entry-name"><span class="slash">/</span>umoja-voices</span>
+            <span class="entry-arrow">↗</span>
+          </div>
+          <p class="entry-desc">Choir management system in active use by real congregations.</p>
+        </a>
+      </li>
+      <li class="entry">
+        <a href="https://family-doc-man.vercel.app" target="_blank" rel="noopener">
+          <div class="entry-top">
+            <span class="entry-name"><span class="slash">/</span>family-doc-man</span>
+            <span class="entry-arrow">↗</span>
+          </div>
+          <p class="entry-desc">A family document vault with AI-native extraction for vital records.</p>
+        </a>
+      </li>
+      <li class="entry">
+        <a href="https://dudus-app.vercel.app" target="_blank" rel="noopener">
+          <div class="entry-top">
+            <span class="entry-name"><span class="slash">/</span>dudus-app</span>
+            <span class="entry-arrow">↗</span>
+          </div>
+          <p class="entry-desc">A photo-lookup companion tied to a real entomology curriculum.</p>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="group" aria-labelledby="photo-label">
+    <p class="group-label" id="photo-label">Photography <span class="count">01</span></p>
+    <ul class="entries">
+      <li class="entry">
+        <a href="http://www.egmgem.com" target="_blank" rel="noopener">
+          <div class="entry-top">
+            <span class="entry-name"><span class="slash">/</span>egmgem.com</span>
+            <span class="entry-arrow">↗</span>
+          </div>
+          <p class="entry-desc">Documentary, portrait, event, and macro &amp; nature photography.</p>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <a href="https://github.com/ericgitonga" target="_blank" rel="noopener">github.com/ericgitonga</a>
+    <a href="mailto:gitonga@gmail.com">gitonga@gmail.com</a>
+  </footer>
+</div>
