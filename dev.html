@@ -54,14 +54,17 @@
     display:flex;
     align-items:baseline;
     gap:.5rem;
-    font-size:.82rem;
-    font-weight:600;
-    letter-spacing:.22em;
+    font-family:var(--mono);
+    font-size:.78rem;
+    font-weight:500;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink);
   }
-  .breadcrumb a{color:var(--accent);transition:color .15s ease;}
+  .breadcrumb a{color:var(--ink);transition:color .15s ease;}
   .breadcrumb a:hover, .breadcrumb a:focus-visible{color:var(--accent);}
   .crumb-sep{color:var(--ink-muted); font-weight:400;}
-  .breadcrumb [aria-current="page"]{color:var(--ink-muted);}
+  .breadcrumb [aria-current="page"]{color:var(--ink);}
 
   .page{
     max-width:680px;
