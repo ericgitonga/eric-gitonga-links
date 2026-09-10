@@ -41,7 +41,18 @@
     padding:1.3rem 1.8rem;
     border-bottom:1px solid var(--line);
   }
-  .mark{font-size:.82rem;font-weight:600;letter-spacing:.22em;}
+  .breadcrumb{
+    display:flex;
+    align-items:baseline;
+    gap:.5rem;
+    font-size:.82rem;
+    font-weight:600;
+    letter-spacing:.22em;
+  }
+  .breadcrumb a{transition:color .15s ease;}
+  .breadcrumb a:hover, .breadcrumb a:focus-visible{color:var(--accent);}
+  .crumb-sep{color:var(--ink-muted); font-weight:400;}
+  .breadcrumb [aria-current="page"]{color:var(--ink-muted);}
   .topbar nav a{
     font-size:.72rem;
     letter-spacing:.18em;
@@ -106,8 +117,11 @@
 </style>
 
 <header class="topbar">
-  <span class="mark">ERIC GITONGA</span>
-  <nav aria-label="Site"><a href="/">← HUB</a></nav>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">ERIC GITONGA</a>
+    <span class="crumb-sep" aria-hidden="true">/</span>
+    <span aria-current="page">DARKROOM</span>
+  </nav>
 </header>
 
 <main>
