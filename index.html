@@ -146,7 +146,7 @@
     border-color:var(--accent);
   }
 
-  .locale{
+  dialog[id$="modal"] p.locale{
     display:inline-flex;
     align-items:center;
     gap:.4em;
@@ -176,21 +176,71 @@
     color:var(--ink-muted);
   }
 
-  .foot-contact{
+  dialog[id$="modal"] p.modal-intro{
+    font-size:.95rem;
+    color:var(--ink-muted);
+    margin:0 0 1.2rem;
+  }
+
+  .form-field{margin-bottom:1rem;}
+  .form-field label{
+    display:block;
+    font-family:var(--mono);
+    font-size:.7rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-muted);
+    margin-bottom:.35rem;
+  }
+  .form-field input, .form-field textarea{
+    width:100%;
+    padding:.55rem .65rem;
+    border:1px solid var(--line);
+    background:var(--ground-raised);
+    color:var(--ink);
+    font-family:var(--label);
+    font-size:.95rem;
+  }
+  .form-field input:focus-visible, .form-field textarea:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:1px;
+  }
+  .form-field textarea{resize:vertical;}
+
+  .form-submit{
+    font-family:var(--mono);
+    font-size:.78rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--ground);
+    background:var(--accent);
+    border:none;
+    padding:.6rem 1.3rem;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .form-submit:hover, .form-submit:focus-visible{
+    background:var(--ink);
+  }
+
+  .modal-icons{
     display:flex;
     align-items:center;
-    gap:.9rem;
+    gap:1rem;
+    margin-top:1.6rem;
+    padding-top:1.2rem;
+    border-top:1px solid var(--line);
   }
-  .foot-contact a{
+  .modal-icons a{
     display:inline-flex;
     color:var(--ink-muted);
     transition:color .15s ease;
   }
-  .foot-contact a:hover, .foot-contact a:focus-visible{
+  .modal-icons a:hover, .modal-icons a:focus-visible{
     color:var(--accent);
   }
 
-  dialog#bio-modal{
+  dialog[id$="modal"]{
     max-width:34rem;
     width:calc(100% - 2.5rem);
     border:1px solid var(--line);
@@ -200,17 +250,17 @@
     color:var(--ink);
     font-family:var(--label);
   }
-  dialog#bio-modal::backdrop{
+  dialog[id$="modal"]::backdrop{
     background:rgba(36,31,22,.45);
   }
-  dialog#bio-modal h3{
+  dialog[id$="modal"] h3{
     font-family:var(--serif);
     font-style:italic;
     font-weight:500;
     font-size:1.7rem;
     margin:0 0 .9rem;
   }
-  dialog#bio-modal p{
+  dialog[id$="modal"] p{
     font-family:var(--serif);
     font-size:1.05rem;
     line-height:1.55;
@@ -244,6 +294,7 @@
     <span class="mark">ERIC GITONGA</span>
     <nav class="topnav" aria-label="Page sections">
       <a href="#bio-modal" id="bio-trigger">BIO</a>
+      <a href="#contact-modal" id="contact-trigger">CONTACT</a>
     </nav>
   </header>
 
@@ -295,35 +346,60 @@
 
   <footer class="foot">
     <span>EST. 2022 · REBUILT 2026</span>
-    <span class="foot-contact">
-      <span class="locale">Nairobi, Kenya</span>
-      <a href="https://github.com/ericgitonga" target="_blank" rel="noopener" aria-label="GitHub: ericgitonga">
-        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      </a>
-      <a href="mailto:gitonga@gmail.com" aria-label="Email: gitonga@gmail.com">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
-      </a>
-    </span>
+    <span>NAIROBI, KENYA</span>
   </footer>
 
   <dialog id="bio-modal">
-    <button class="modal-close" id="bio-close" aria-label="Close">×</button>
+    <button class="modal-close" data-close-modal aria-label="Close">×</button>
     <h3>Bio</h3>
     <p>I diagnose the real problem, map the fastest solid fix, and build the software to match — for real people and organisations, not hypothetical ones.</p>
     <p class="locale">Nairobi, Kenya</p>
   </dialog>
+
+  <dialog id="contact-modal">
+    <button class="modal-close" data-close-modal aria-label="Close">×</button>
+    <h3>Contact</h3>
+    <p class="modal-intro">Send a note directly, or reach out below.</p>
+    <form class="contact-form" action="mailto:gitonga@gmail.com" method="post" enctype="text/plain">
+      <div class="form-field">
+        <label for="contact-name">Name</label>
+        <input id="contact-name" name="Name" type="text" required>
+      </div>
+      <div class="form-field">
+        <label for="contact-email">Email</label>
+        <input id="contact-email" name="Email" type="email" required>
+      </div>
+      <div class="form-field">
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" name="Message" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send</button>
+    </form>
+    <div class="modal-icons">
+      <a href="https://github.com/ericgitonga" target="_blank" rel="noopener" aria-label="GitHub: ericgitonga">
+        <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <a href="mailto:gitonga@gmail.com" aria-label="Email: gitonga@gmail.com">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
+      </a>
+    </div>
+  </dialog>
 </div>
 
 <script>
-  var modal = document.getElementById('bio-modal');
-  document.getElementById('bio-trigger').addEventListener('click', function (e) {
-    e.preventDefault();
-    modal.showModal();
-  });
-  document.getElementById('bio-close').addEventListener('click', function () {
-    modal.close();
-  });
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) modal.close();
-  });
+  function wireModal(triggerId, modalId) {
+    var modal = document.getElementById(modalId);
+    document.getElementById(triggerId).addEventListener('click', function (e) {
+      e.preventDefault();
+      modal.showModal();
+    });
+    modal.querySelector('[data-close-modal]').addEventListener('click', function () {
+      modal.close();
+    });
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) modal.close();
+    });
+  }
+  wireModal('bio-trigger', 'bio-modal');
+  wireModal('contact-trigger', 'contact-modal');
 </script>
