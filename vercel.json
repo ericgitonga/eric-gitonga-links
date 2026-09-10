@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/", "has": [{ "type": "host", "value": "darkroom.ericgitonga.com" }], "destination": "/darkroom.html" },
+    { "source": "/", "has": [{ "type": "host", "value": "dev.ericgitonga.com" }], "destination": "/dev.html" },
+    { "source": "/", "has": [{ "type": "host", "value": "doodles.ericgitonga.com" }], "destination": "/doodles.html" }
+  ]
+}

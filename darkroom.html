@@ -1,0 +1,123 @@
+<title>Darkroom — Eric Gitonga</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,500;0,600;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Photographs — landscapes, portraits, and documentary moments. Coming soon.">
+
+<style>
+  :root{
+    --ground:#f3efe3;
+    --ink:#241f16;
+    --ink-muted:#7a7160;
+    --accent:#3f6b53;
+    --accent-dim:#8ba38f;
+    --line:#d9cfb8;
+    --serif:'Newsreader', Georgia, 'Times New Roman', serif;
+    --label:'Archivo Narrow', 'Arial Narrow', sans-serif;
+    --mono:'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--label);
+    display:flex;
+    flex-direction:column;
+    min-height:100dvh;
+  }
+  a{color:inherit;text-decoration:none;}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+  .topbar{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    padding:1.3rem 1.8rem;
+    border-bottom:1px solid var(--line);
+  }
+  .mark{font-size:.82rem;font-weight:600;letter-spacing:.22em;}
+  .topbar nav a{
+    font-size:.72rem;
+    letter-spacing:.18em;
+    color:var(--ink-muted);
+    transition:color .15s ease;
+  }
+  .topbar nav a:hover, .topbar nav a:focus-visible{color:var(--accent);}
+
+  main{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:2rem;
+  }
+  .plate-no{
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.16em;
+    color:var(--ink-muted);
+    margin-bottom:.9rem;
+  }
+  h1{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(2.4rem,8vw,3.6rem);
+    margin:0 0 .8rem;
+  }
+  p{
+    font-family:var(--serif);
+    font-size:1.05rem;
+    color:var(--ink-muted);
+    max-width:34ch;
+    margin:0 0 1.6rem;
+    line-height:1.5;
+  }
+  .back{
+    display:inline-block;
+    font-family:var(--mono);
+    font-size:.78rem;
+    letter-spacing:.04em;
+    color:var(--accent);
+    border-bottom:1px solid var(--accent-dim);
+    padding-bottom:.2rem;
+  }
+  .back:hover, .back:focus-visible{border-color:var(--accent);}
+
+  .foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:.9rem 1.8rem;
+    border-top:1px solid var(--line);
+    font-family:var(--mono);
+    font-size:.68rem;
+    letter-spacing:.08em;
+    color:var(--ink-muted);
+  }
+</style>
+
+<header class="topbar">
+  <span class="mark">ERIC GITONGA</span>
+  <nav aria-label="Site"><a href="/">← HUB</a></nav>
+</header>
+
+<main>
+  <span class="plate-no">PLATE I</span>
+  <h1>Darkroom</h1>
+  <p>Photographs — landscapes, portraits, and documentary moments. This ecosystem is still being built.</p>
+  <a class="back" href="/">Back to ericgitonga.com</a>
+</main>
+
+<footer class="foot">
+  <span>PLATE I · DARKROOM</span>
+  <span>darkroom.ericgitonga.com</span>
+</footer>
