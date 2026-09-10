@@ -1,7 +1,7 @@
 // Sends the hub page's contact form via Resend, so a visitor's message reaches
 // gitonga@gmail.com without them needing their own mail client open — same
 // approach as career-transition's intake pipeline. Requires RESEND_API_KEY
-// (and optionally FROM_EMAIL, default "onboarding@resend.dev") set as a
+// (and optionally FROM_EMAIL, default "ericgitonga.com <onboarding@resend.dev>") set as a
 // Vercel project env var.
 
 const RECIPIENT = "gitonga@gmail.com";
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: process.env.FROM_EMAIL || "onboarding@resend.dev",
+        from: process.env.FROM_EMAIL || "ericgitonga.com <onboarding@resend.dev>",
         to: [RECIPIENT],
         reply_to: email,
         subject: `ericgitonga.com contact form: ${name}`,
