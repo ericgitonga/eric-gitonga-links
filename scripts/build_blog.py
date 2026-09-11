@@ -73,6 +73,10 @@ SHARED_CSS = """
     border-bottom:1px solid var(--line);
     flex-wrap:wrap;
     gap:.4rem;
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:var(--ground);
   }
   .breadcrumb{
     display:flex;
