@@ -8,9 +8,15 @@ going out under his name.
 
 ## 1. Export from Substack
 
-Substack → **Settings → Exports** → request an export. It emails a ZIP containing every post as
-HTML (or Markdown, depending on export version) plus a CSV of metadata (title, subtitle, publish
-date, slug) and the original images.
+Substack → **Settings → Exports** → request an export. It emails a ZIP containing `posts.csv`
+(metadata — title, subtitle, publish date, slug — one row per post) and a `posts/` folder with
+one HTML file per post.
+
+**No images are bundled.** The exported HTML still displays images, but only because it
+hotlinks back to Substack's own CDN — those URLs work today but aren't guaranteed to keep
+working indefinitely once the content lives elsewhere. Download each image from its Substack URL
+and save it under `blog/images/<slug>/` rather than leaving the migrated post depending on
+Substack still hosting it.
 
 ## 2. Convert each post to this repo's format
 
