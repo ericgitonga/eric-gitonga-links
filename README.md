@@ -8,11 +8,14 @@ order:
 | Daguerreotypes | `ericgitonga.com/daguerreotypes` | Photography — landscapes, portraits, documentary moments. Placeholder page (`daguerreotypes.html`) for now. |
 | Daubs | `ericgitonga.com/daubs` | Drawings, watercolours, and marks made for their own sake. Placeholder page (`daubs.html`) for now. |
 | Diffs | `ericgitonga.com/diffs` | Software and systems — Eric's technical practice. Live content (`diffs.html`): the "how fast you can expect this" stats and the Software & AI products list. |
-| Dudus | `dudus.ericgitonga.com` | Kenya's tiniest wildlife — the `dudus-app` project, a **separate repo/deployment**, hence a real subdomain rather than a path here. `shop.dudus.ericgitonga.com` (`dudu-merchandise`, also separate) nests under it. |
+| Dudus | `ericgitonga.com/dudus` | Kenya's tiniest wildlife. This page (`dudus.html`) links out to the two real separate deployments: [dudus-app](https://dudus.ericgitonga.com) (identification companion) and [dudu-merchandise](https://shop.dudus.ericgitonga.com) (shop, nested under it as `shop.dudus.ericgitonga.com`). |
 
 Card names are each a term of art specific to their craft, not a generic label —
 Daguerreotypes (the historic photographic process), Daubs (the painter's own word for informal
 work), Diffs (the developer's word for comparing versions), Dudus (Kenyan slang for insects).
+
+Every card is a path on this one repo — Dudus is the only one whose page exists purely to link
+onward to real external deployments, rather than being content in itself.
 
 Daguerreotypes, Daubs, and Diffs are paths on this one static site, not subdomains — they're just
 pages in this repo, not separate deployments, so there's no real infrastructure behind a
@@ -21,7 +24,9 @@ pages in this repo, not separate deployments, so there's no real infrastructure 
 [documented as unreliable in production](https://community.vercel.com/t/vercel-json-the-has-condition-on-host-doesnt-seem-to-work/9863),
 and it didn't fire in local testing either, so it was dropped in favor of plain paths — reliable,
 and honest about what's actually deployed.) If any of them grows into its own real app someday,
-it can graduate to a real subdomain then, the same way Dudus already has one.
+it can graduate to a real subdomain then, the same way dudus-app and dudu-merchandise already
+have — those are genuinely separate deployments, just reached via a link from `/dudus` rather
+than directly from the hub card.
 
 Static HTML, no build step, deployed straight to Vercel. `vercel.json` sets `cleanUrls: true`
 so `/diffs` serves `diffs.html` (etc.) without the extension — no framework/router needed. Bio and
