@@ -7,14 +7,14 @@ order:
 |---|---|---|
 | Daguerreotypes | `ericgitonga.com/daguerreotypes` | Photography — landscapes, portraits, documentary moments. Placeholder page (`daguerreotypes.html`) for now. |
 | Daubs | `ericgitonga.com/daubs` | Drawings, watercolours, and marks made for their own sake. Placeholder page (`daubs.html`) for now. |
-| Diff | `ericgitonga.com/diff` | Software and systems — Eric's technical practice. Live content (`diff.html`): the "how fast you can expect this" stats and the Software & AI products list. |
+| Diffs | `ericgitonga.com/diffs` | Software and systems — Eric's technical practice. Live content (`diffs.html`): the "how fast you can expect this" stats and the Software & AI products list. |
 | Dudus | `dudus.ericgitonga.com` | Kenya's tiniest wildlife — the `dudus-app` project, a **separate repo/deployment**, hence a real subdomain rather than a path here. `shop.dudus.ericgitonga.com` (`dudu-merchandise`, also separate) nests under it. |
 
 Card names are each a term of art specific to their craft, not a generic label —
 Daguerreotypes (the historic photographic process), Daubs (the painter's own word for informal
-work), Diff (the developer's word for comparing versions), Dudus (Kenyan slang for insects).
+work), Diffs (the developer's word for comparing versions), Dudus (Kenyan slang for insects).
 
-Daguerreotypes, Daubs, and Diff are paths on this one static site, not subdomains — they're just
+Daguerreotypes, Daubs, and Diffs are paths on this one static site, not subdomains — they're just
 pages in this repo, not separate deployments, so there's no real infrastructure behind a
 `daguerreotypes.ericgitonga.com`-style hostname yet. (An earlier draft tried host-based
 `vercel.json` rewrites to fake real subdomains for these three; that mechanism is
@@ -24,7 +24,7 @@ and honest about what's actually deployed.) If any of them grows into its own re
 it can graduate to a real subdomain then, the same way Dudus already has one.
 
 Static HTML, no build step, deployed straight to Vercel. `vercel.json` sets `cleanUrls: true`
-so `/diff` serves `diff.html` (etc.) without the extension — no framework/router needed. Bio and
+so `/diffs` serves `diffs.html` (etc.) without the extension — no framework/router needed. Bio and
 Contact are reached from the top nav on the hub page (`index.html`) as modal dialogs, not from a
 card. The Contact modal's form POSTs to `/api/contact` (a Vercel serverless function using
 Resend's REST API directly, no SDK) instead of a `mailto:` link, so a visitor's message reaches
