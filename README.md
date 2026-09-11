@@ -29,12 +29,30 @@ have — those are genuinely separate deployments, just reached via a link from 
 than directly from the hub card.
 
 Static HTML, no build step, deployed straight to Vercel. `vercel.json` sets `cleanUrls: true`
-so `/diffs` serves `diffs.html` (etc.) without the extension — no framework/router needed. Bio and
-Contact are reached from the top nav on the hub page (`index.html`) as modal dialogs, not from a
-card. The Contact modal's form POSTs to `/api/contact` (a Vercel serverless function using
-Resend's REST API directly, no SDK) instead of a `mailto:` link, so a visitor's message reaches
-`gitonga@gmail.com` without them needing their own mail client open — requires `RESEND_API_KEY`
-(and optionally `FROM_EMAIL`) set as a Vercel env var on this project.
+so `/diffs` serves `diffs.html` (etc.) without the extension — no framework/router needed. Bio,
+Blog, and Contact are reached from the top nav on the hub page (`index.html`), not from a card —
+Bio and Contact are modal dialogs, Blog is a real page (`/blog`). The Contact modal's form POSTs
+to `/api/contact` (a Vercel serverless function using Resend's REST API directly, no SDK)
+instead of a `mailto:` link, so a visitor's message reaches `gitonga@gmail.com` without them
+needing their own mail client open — requires `RESEND_API_KEY` (and optionally `FROM_EMAIL`) set
+as a Vercel env var on this project.
+
+## Blog
+
+`/blog` and `/blog/<slug>` — same brand kit and breadcrumb as the rest of the site, so "back to
+ericgitonga.com" actually works (this replaced an external link to a Substack blog for exactly
+that reason: no way back into the rest of the site from there).
+
+No CMS. Posts are Markdown with YAML frontmatter in `blog/posts/*.md`, rendered to static HTML
+by `scripts/build_blog.py` (Python's `markdown` + `yaml`, both already in the `ds` conda env — no
+new dependency). Run it locally after adding/editing a post and commit the generated
+`blog.html`/`blog/<slug>.html` alongside the source, same as everything else here:
+
+```bash
+conda run -n ds python scripts/build_blog.py
+```
+
+See `blog/MIGRATION.md` for bringing the existing Substack archive (~12 posts, 2018–2025) across.
 
 Design: a shared brand kit across `eric-gitonga-links`, `dudus-app`, and `dudu-merchandise` —
 warm paper-cream ground, dark ink, one verdigris accent, Newsreader/Archivo Narrow/IBM Plex Mono
