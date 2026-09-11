@@ -40,6 +40,5 @@ this repo).
 
 ## Updating
 
-Edit the relevant `.html` file directly and push — Vercel redeploys on push to `main`. No
-branch protection on this repo; for a change of any size, pushing straight to `main` is the
-normal workflow here (unlike the other projects in this family, which require branch + PR).
+See `ONBOARDING.md` — issue first, then branch + PR, same as every other repo in this family.
+`main` is branch-protected; Vercel redeploys on push to `main` once a PR merges.
