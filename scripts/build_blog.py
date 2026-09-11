@@ -24,6 +24,7 @@ INDEX_PATH = ROOT / "blog.html"
 FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n(.*)\Z", re.DOTALL)
 
 FONT_LINKS = (
+    '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
     '<link rel="icon" href="/favicon.ico" sizes="any">\n'
     '<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">\n'
     '<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">\n'
