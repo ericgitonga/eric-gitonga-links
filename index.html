@@ -98,6 +98,7 @@
     position:relative;
     display:flex;
     flex-direction:column;
+    min-width:0;
     border-right:1px solid var(--line);
     background:var(--ground);
   }
@@ -117,6 +118,9 @@
     object-fit:cover;
     display:block;
     transition:transform .6s ease;
+  }
+  .art--left img{
+    object-position:left;
   }
   .plate:hover .art img, .plate:focus-visible .art img{
     transform:scale(1.045);
@@ -153,6 +157,8 @@
     color:var(--accent);
     border-bottom:1px solid var(--accent-dim);
     padding-bottom:.2rem;
+    overflow-wrap:break-word;
+    max-width:100%;
     transition:border-color .35s ease;
   }
   .plate:hover .dest, .plate:focus-visible .dest{
@@ -364,7 +370,7 @@
     </a>
 
     <a class="plate" href="/diffs" data-cat="diffs">
-      <div class="art">
+      <div class="art art--left">
         <img src="/assets/hub/diffs.jpg" alt="A Python source file, part of the dudus-app catalogue validation" width="1226" height="1000" loading="lazy">
       </div>
       <div class="label">
