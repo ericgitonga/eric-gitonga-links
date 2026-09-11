@@ -98,6 +98,7 @@
     position:relative;
     display:flex;
     flex-direction:column;
+    min-width:0;
     border-right:1px solid var(--line);
     background:var(--ground);
   }
@@ -156,6 +157,8 @@
     color:var(--accent);
     border-bottom:1px solid var(--accent-dim);
     padding-bottom:.2rem;
+    overflow-wrap:break-word;
+    max-width:100%;
     transition:border-color .35s ease;
   }
   .plate:hover .dest, .plate:focus-visible .dest{
