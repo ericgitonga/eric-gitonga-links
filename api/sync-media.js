@@ -13,10 +13,14 @@
 // (default "true" — set to "false" only if the account can't do FTPS).
 
 import { Client } from "basic-ftp";
-import { put } from "@vercel/blob";
+import { put, head } from "@vercel/blob";
+import sharp from "sharp";
+import { PassThrough } from "node:stream";
 
 const PLATES = ["Daguerreotypes", "Dudus"];
 const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
+const THUMBNAIL_WIDTH = 400;
+const THUMBNAIL_QUALITY = 78;
 
 function isImage(filename) {
   const dot = filename.lastIndexOf(".");
@@ -42,6 +46,57 @@ function imageUrl(basePath, plate, album, filename) {
   return `${process.env.MEDIA_BASE_URL}/${plate}/${encodeURIComponent(album)}/${encodeURIComponent(filename)}`;
 }
 
+async function downloadToBuffer(client, remotePath) {
+  const chunks = [];
+  const stream = new PassThrough();
+  stream.on("data", (chunk) => chunks.push(chunk));
+  await client.downloadTo(stream, remotePath);
+  return Buffer.concat(chunks);
+}
+
+// Grid thumbnails are generated and hosted on Vercel Blob (fast CDN) instead
+// of hotlinking the full original from Angry Hosting — a grid of a dozen-plus
+// multi-MB originals made the gallery feel very slow. Falls back to the
+// original hotlinked URL if the download/resize fails for any reason, so one
+// bad file doesn't break the whole sync. The modal's full-size images are
+// unaffected — still hotlinked directly, since only one loads at a time.
+//
+// Skips regenerating a thumbnail that already exists at this album's stable
+// path — otherwise every album gets re-downloaded and re-resized on every
+// single daily sync forever, which will eventually exceed Vercel's function
+// duration limit as more albums pile up. Trade-off: if you swap an album's
+// cover file for a different photo, its thumbnail won't update on its own —
+// delete `thumbnails/<plate>/<slug>.jpg` from the Blob store to force a
+// refresh.
+async function buildThumbnail(client, remotePath, plate, albumSlug) {
+  const thumbnailPath = `thumbnails/${plate}/${albumSlug}.jpg`;
+
+  try {
+    const existing = await head(thumbnailPath);
+    if (existing) return existing.url;
+  } catch (err) {
+    // Not found — fall through and generate it.
+  }
+
+  try {
+    const original = await downloadToBuffer(client, remotePath);
+    const resized = await sharp(original)
+      .resize({ width: THUMBNAIL_WIDTH, withoutEnlargement: true })
+      .jpeg({ quality: THUMBNAIL_QUALITY })
+      .toBuffer();
+    const blob = await put(thumbnailPath, resized, {
+      access: "public",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: "image/jpeg",
+    });
+    return blob.url;
+  } catch (err) {
+    console.error(`Thumbnail failed for ${remotePath}:`, err);
+    return null;
+  }
+}
+
 async function listAlbums(client, basePath, plate) {
   const plateDir = basePath ? `${basePath}/${plate}` : plate;
   const albumDirs = (await client.list(plateDir)).filter((e) => e.isDirectory);
@@ -64,12 +119,17 @@ async function listAlbums(client, basePath, plate) {
 
     if (images.length === 0) continue;
 
+    const coverFilename = cover ? cover.name : images[0].filename;
+    const coverRemotePath = `${albumDir}/${coverFilename}`;
+    const coverFallbackUrl = cover
+      ? imageUrl(basePath, plate, dir.name, cover.name)
+      : images[0].url;
+    const thumbnailUrl = await buildThumbnail(client, coverRemotePath, plate, dir.name);
+
     albums.push({
       slug: dir.name,
       title: titleCase(dir.name),
-      cover: cover
-        ? imageUrl(basePath, plate, dir.name, cover.name)
-        : images[0].url,
+      cover: thumbnailUrl || coverFallbackUrl,
       images,
     });
   }
