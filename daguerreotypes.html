@@ -43,33 +43,75 @@
   }
 
   .topbar{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:.6rem 1.5rem;
     padding:1.3rem 1.8rem;
     border-bottom:1px solid var(--line);
-    flex-wrap:wrap;
-    gap:.4rem;
     position:sticky;
     top:0;
     z-index:10;
     background:var(--ground);
   }
-  .breadcrumb{
-    display:flex;
-    align-items:baseline;
-    gap:.5rem;
+  .topbar-home{
+    justify-self:start;
     font-family:var(--mono);
-    font-size:.78rem;
+    font-size:.82rem;
+    font-weight:600;
+    letter-spacing:.22em;
+    color:var(--ink);
+    transition:color .15s ease;
+  }
+  a.topbar-home:hover, a.topbar-home:focus-visible{color:var(--accent);}
+  .topbar-plates{
+    justify-self:center;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:1.25rem;
+  }
+  .topbar-plates a, .topbar-plates span{
+    font-family:var(--mono);
+    font-size:.72rem;
     font-weight:500;
-    letter-spacing:.08em;
+    letter-spacing:.1em;
     text-transform:uppercase;
+    color:var(--ink-muted);
+    transition:color .15s ease;
+  }
+  .topbar-plates a:hover, .topbar-plates a:focus-visible{color:var(--accent);}
+  .topbar-plates [aria-current="page"]{color:var(--ink);}
+  .topbar-links{
+    justify-self:end;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:1.4rem;
+  }
+  .topbar-links a{
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.18em;
+    color:var(--ink-muted);
+    transition:color .15s ease;
+  }
+  .topbar-links a:hover, .topbar-links a:focus-visible{color:var(--accent);}
+  .topbar-links [aria-current="page"]{
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.18em;
     color:var(--ink);
   }
-  .breadcrumb a{color:var(--ink);transition:color .15s ease;}
-  .breadcrumb a:hover, .breadcrumb a:focus-visible{color:var(--accent);}
-  .crumb-sep{color:var(--ink-muted); font-weight:400;}
-  .breadcrumb [aria-current="page"]{color:var(--ink);}
+
+  @media (max-width:760px){
+    .topbar{
+      grid-template-columns:1fr;
+      justify-items:center;
+      text-align:center;
+    }
+    .topbar-home, .topbar-plates, .topbar-links{justify-self:center;}
+  }
 
   .page{
     max-width:680px;
@@ -268,10 +310,17 @@
 </style>
 
 <header class="topbar">
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">← ERIC GITONGA</a>
-    <span class="crumb-sep" aria-hidden="true">/</span>
-    <span aria-current="page">DAGUERREOTYPES</span>
+  <a class="topbar-home" href="/">ERIC GITONGA</a>
+  <nav class="topbar-plates" aria-label="Plates">
+      <span aria-current="page">Daguerreotypes</span>
+      <a href="/daubs">Daubs</a>
+      <a href="/diffs">Diffs</a>
+      <a href="/dudus">Dudus</a>
+  </nav>
+  <nav class="topbar-links" aria-label="Site">
+      <a href="/#bio-modal">Bio</a>
+      <a href="/blog">Blog</a>
+      <a href="/#contact-modal">Contact</a>
   </nav>
 </header>
 
