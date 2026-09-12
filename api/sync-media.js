@@ -108,6 +108,12 @@ export default async function handler(req, res) {
       user: process.env.ANGRYHOSTING_FTP_USER,
       password: process.env.ANGRYHOSTING_FTP_PASSWORD,
       secure: process.env.ANGRYHOSTING_FTP_SECURE !== "false",
+      // Shared hosting FTPS commonly serves a cert Node's default CA store
+      // can't chain-verify. Read-only media crawl over an otherwise-encrypted
+      // channel, so this is an accepted tradeoff unless explicitly tightened.
+      secureOptions: {
+        rejectUnauthorized: process.env.ANGRYHOSTING_FTP_REJECT_UNAUTHORIZED === "true",
+      },
     });
 
     const plates = {};
