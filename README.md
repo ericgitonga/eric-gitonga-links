@@ -61,6 +61,30 @@ type pairing, catalogue-plate numbering (PLATE I–IV), and a standardized top-l
 `extras/personal/me/eric-hub-concept.html` in the wider `Develop/projects` tree (not part of
 this repo).
 
+## Media (Daguerreotypes / Dudus galleries)
+
+Photo/entomology media for the Daguerreotypes and Dudus plates is sourced from Eric's Angry
+Hosting account, not this repo — uploading a new photo there is enough to make it appear on the
+site, no code change or redeploy needed. Folder convention on Angry Hosting (one level of albums,
+no further nesting): `Daguerreotypes/<album>/<image>` and `Dudus/<album>/<image>`, hyphenated
+album slugs, an optional `cover.<ext>` file per album to set its grid thumbnail (defaults to the
+first image alphabetically otherwise).
+
+`api/sync-media.js` is a Vercel Serverless Function, triggered once daily by Vercel Cron
+(`vercel.json`), that connects to Angry Hosting over FTP(S) (`basic-ftp`), walks both plates'
+albums, and publishes a JSON manifest to Vercel Blob (`@vercel/blob`) — this is the first
+`package.json` this repo has needed (the contact form calls Resend's REST API directly with
+`fetch`, no dependency). `api/media-manifest.js` is a thin same-origin proxy the static gallery
+pages read from, so client code never needs to know the actual Blob URL. The album-grid + modal
+image viewer UI itself is a separate follow-up (see open issues).
+
+Requires these Vercel env vars: `ANGRYHOSTING_FTP_HOST`, `ANGRYHOSTING_FTP_USER`,
+`ANGRYHOSTING_FTP_PASSWORD`, `MEDIA_BASE_URL` (currently `http://media.ericgitonga.com` — **switch
+to `https://` the moment Angry Hosting issues a certificate for that subdomain**, env var change
+only), `CRON_SECRET` (so `/api/sync-media` can't be triggered by anyone else). Optional:
+`ANGRYHOSTING_FTP_BASE_PATH` if the FTP account's login root isn't already the
+`media.ericgitonga.com` webroot.
+
 ## Updating
 
 See `ONBOARDING.md` — issue first, then branch + PR, same as every other repo in this family.
