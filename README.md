@@ -5,10 +5,10 @@ order:
 
 | Card | Where it lives | What it is |
 |---|---|---|
-| Daguerreotypes | `ericgitonga.com/daguerreotypes` | Photography — landscapes, portraits, documentary moments. Placeholder page (`daguerreotypes.html`) for now. |
+| Daguerreotypes | `ericgitonga.com/daguerreotypes` | Photography — landscapes, portraits, documentary moments. Live content (`daguerreotypes.html`): an album-grid gallery sourced from Angry Hosting (see Media section below). |
 | Daubs | `ericgitonga.com/daubs` | Drawings, watercolours, and marks made for their own sake. Placeholder page (`daubs.html`) for now. |
 | Diffs | `ericgitonga.com/diffs` | Software and systems — Eric's technical practice. Live content (`diffs.html`): the "how fast you can expect this" stats and the Software & AI products list. |
-| Dudus | `ericgitonga.com/dudus` | Kenya's tiniest wildlife. This page (`dudus.html`) links out to the two real separate deployments: [dudus-app](https://dudus.ericgitonga.com) (identification companion) and [dudu-merchandise](https://shop.dudus.ericgitonga.com) (shop, nested under it as `shop.dudus.ericgitonga.com`). |
+| Dudus | `ericgitonga.com/dudus` | Kenya's tiniest wildlife. This page (`dudus.html`) has an album-grid gallery of Eric's own dudu photographs, plus links out to the two real separate deployments: [dudus-app](https://dudus.ericgitonga.com) (identification companion) and [dudu-merchandise](https://shop.dudus.ericgitonga.com) (shop, nested under it as `shop.dudus.ericgitonga.com`). |
 
 Card names are each a term of art specific to their craft, not a generic label —
 Daguerreotypes (the historic photographic process), Daubs (the painter's own word for informal
@@ -75,8 +75,14 @@ first image alphabetically otherwise).
 albums, and publishes a JSON manifest to Vercel Blob (`@vercel/blob`) — this is the first
 `package.json` this repo has needed (the contact form calls Resend's REST API directly with
 `fetch`, no dependency). `api/media-manifest.js` is a thin same-origin proxy the static gallery
-pages read from, so client code never needs to know the actual Blob URL. The album-grid + modal
-image viewer UI itself is a separate follow-up (see open issues).
+pages read from, so client code never needs to know the actual Blob URL.
+
+`assets/gallery.js` is a shared script (the one exception to this repo's usual per-page
+duplication — real interactive logic, not boilerplate) that both `daguerreotypes.html` and
+`dudus.html` load. It fetches `/api/media-manifest`, renders an album grid, and opens a `<dialog>`
+modal image viewer (previous/next arrows, ←/→ keyboard nav, click-outside/Esc to close) when an
+album is chosen — same modal pattern as the hub page's Bio/Contact dialogs. Each page calls
+`initGallery('daguerreotypes')` or `initGallery('dudus')` to wire itself up.
 
 Requires these Vercel env vars: `ANGRYHOSTING_FTP_HOST`, `ANGRYHOSTING_FTP_USER`,
 `ANGRYHOSTING_FTP_PASSWORD`, `MEDIA_BASE_URL` (currently `http://media.ericgitonga.com` — **switch
