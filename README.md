@@ -29,13 +29,19 @@ have — those are genuinely separate deployments, just reached via a link from 
 than directly from the hub card.
 
 Static HTML, no build step, deployed straight to Vercel. `vercel.json` sets `cleanUrls: true`
-so `/diffs` serves `diffs.html` (etc.) without the extension — no framework/router needed. Bio,
-Blog, and Contact are reached from the top nav on the hub page (`index.html`), not from a card —
-Bio and Contact are modal dialogs, Blog is a real page (`/blog`). The Contact modal's form POSTs
-to `/api/contact` (a Vercel serverless function using Resend's REST API directly, no SDK)
-instead of a `mailto:` link, so a visitor's message reaches `gitonga@gmail.com` without them
-needing their own mail client open — requires `RESEND_API_KEY` (and optionally `FROM_EMAIL`) set
-as a Vercel env var on this project.
+so `/diffs` serves `diffs.html` (etc.) without the extension — no framework/router needed.
+
+Every page shares one navbar layout: "ERIC GITONGA" (linked to `/`, except on the hub itself)
+on the left, the four plates centred (the current page's own plate shown as plain text, not a
+link), and Bio/Blog/Contact on the right. Bio and Contact are modal dialogs — their markup, styles,
+and the Contact form's logic only exist on `index.html`; every other page's Bio/Contact links
+point at `/#bio-modal` / `/#contact-modal`, and a small script on `index.html` opens the matching
+dialog on load if that hash is present (and clears it again when the dialog closes), rather than
+duplicating the modal machinery onto all seven pages. Blog is a real page (`/blog`). The Contact
+modal's form POSTs to `/api/contact` (a Vercel serverless function using Resend's REST API
+directly, no SDK) instead of a `mailto:` link, so a visitor's message reaches `gitonga@gmail.com`
+without them needing their own mail client open — requires `RESEND_API_KEY` (and optionally
+`FROM_EMAIL`) set as a Vercel env var on this project.
 
 ## Blog
 
@@ -56,10 +62,12 @@ See `blog/MIGRATION.md` for bringing the existing Substack archive (~12 posts, 2
 
 Design: a shared brand kit across `eric-gitonga-links`, `dudus-app`, and `dudu-merchandise` —
 warm paper-cream ground, dark ink, one verdigris accent, Newsreader/Archivo Narrow/IBM Plex Mono
-type pairing, catalogue-plate numbering (PLATE I–IV), and a standardized top-left breadcrumb
-(`← ERIC GITONGA / <PAGE>`) on every page across all three sites. Reference:
+type pairing, and catalogue-plate numbering (PLATE I–IV). Reference:
 `extras/personal/me/eric-hub-concept.html` in the wider `Develop/projects` tree (not part of
-this repo).
+this repo). The top-left `← ERIC GITONGA / <PAGE>` breadcrumb this repo used to share with
+`dudus-app`/`dudu-merchandise` was replaced here by the three-column navbar described above
+(Eric Gitonga / four plates / Bio-Blog-Contact) — the other two sites still use the breadcrumb,
+so that piece of the shared brand kit has diverged for this repo specifically.
 
 ## Media (Daguerreotypes / Dudus galleries)
 
