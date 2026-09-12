@@ -187,6 +187,136 @@
     letter-spacing:.08em;
     color:var(--ink-muted);
   }
+
+  .album-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:1rem;
+  }
+  .album-card{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:.4rem;
+    padding:0;
+    border:none;
+    background:none;
+    font:inherit;
+    color:inherit;
+    cursor:pointer;
+    text-align:left;
+  }
+  .album-thumb{
+    display:block;
+    width:100%;
+    aspect-ratio:4/3;
+    overflow:hidden;
+    background:#000;
+    border:1px solid var(--line);
+  }
+  .album-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .3s ease;
+  }
+  .album-card:hover .album-thumb img, .album-card:focus-visible .album-thumb img{
+    transform:scale(1.04);
+  }
+  .album-title{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--ink);
+  }
+  .album-count{
+    font-family:var(--mono);
+    font-size:.68rem;
+    letter-spacing:.06em;
+    color:var(--ink-muted);
+  }
+  .gallery-updated{
+    margin-top:1.5rem;
+    font-family:var(--mono);
+    font-size:.68rem;
+    letter-spacing:.04em;
+    color:var(--ink-muted);
+  }
+  .gallery-empty{
+    font-family:var(--serif);
+    color:var(--ink-muted);
+  }
+
+  dialog#gallery-modal{
+    border:none;
+    padding:0;
+    max-width:min(92vw,900px);
+    width:100%;
+    background:var(--ground);
+    color:var(--ink);
+  }
+  dialog#gallery-modal::backdrop{
+    background:rgba(20,17,10,.72);
+  }
+  dialog#gallery-modal .modal-close{
+    position:absolute;
+    top:.6rem;
+    right:.8rem;
+    background:none;
+    border:none;
+    font-size:1.6rem;
+    line-height:1;
+    cursor:pointer;
+    color:var(--ink-muted);
+    z-index:2;
+    padding:0;
+  }
+  dialog#gallery-modal .modal-close:hover, dialog#gallery-modal .modal-close:focus-visible{
+    color:var(--accent);
+  }
+  .gallery-nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(36,31,22,.55);
+    color:#f3efe3;
+    border:none;
+    width:2.6rem;
+    height:2.6rem;
+    border-radius:50%;
+    font-size:1.6rem;
+    line-height:1;
+    cursor:pointer;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .gallery-nav:hover, .gallery-nav:focus-visible{
+    background:rgba(36,31,22,.8);
+  }
+  .gallery-prev{left:.6rem;}
+  .gallery-next{right:.6rem;}
+  .gallery-figure{
+    margin:0;
+    position:relative;
+  }
+  .gallery-image{
+    display:block;
+    width:100%;
+    max-height:78vh;
+    object-fit:contain;
+    background:#000;
+  }
+  .gallery-caption{
+    padding:.7rem 1rem;
+    font-family:var(--mono);
+    font-size:.74rem;
+    letter-spacing:.04em;
+    color:var(--ink-muted);
+    text-align:center;
+  }
 </style>
 
 <header class="topbar">
@@ -201,6 +331,11 @@
   <span class="plate-no">PLATE IV</span>
   <h1>Dudus</h1>
   <p class="intro">All about Kenya's tiniest wildlife — an identification companion and a shop, both built around the same photographs.</p>
+
+  <section class="group" aria-labelledby="photos-label">
+    <p class="group-label" id="photos-label">Photographs</p>
+    <div id="gallery-root"><p class="gallery-empty">Loading albums…</p></div>
+  </section>
 
   <section class="group" aria-labelledby="dudus-label">
     <p class="group-label" id="dudus-label">This ecosystem</p>
@@ -231,3 +366,10 @@
   <span>PLATE IV · DUDUS</span>
   <span>ericgitonga.com/dudus</span>
 </footer>
+
+<script src="/assets/gallery.js" defer></script>
+<script defer>
+  document.addEventListener('DOMContentLoaded', function () {
+    initGallery('dudus');
+  });
+</script>
