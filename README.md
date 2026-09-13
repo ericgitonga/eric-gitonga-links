@@ -7,7 +7,7 @@ order:
 |---|---|---|
 | Daguerreotypes | `ericgitonga.com/daguerreotypes` | Photography — landscapes, portraits, documentary moments. Live content (`daguerreotypes.html`): an album-grid gallery sourced from Angry Hosting (see Media section below). |
 | Daubs | `ericgitonga.com/daubs` | Drawings, watercolours, and marks made for their own sake. Placeholder page (`daubs.html`) for now. |
-| Diffs | `ericgitonga.com/diffs` | Software and systems — Eric's technical practice. Live content (`diffs.html`): the "how fast you can expect this" stats and the Software & AI products list. |
+| Diffs | `ericgitonga.com/diffs` | Software and systems — Eric's technical practice. Live content (`diffs.html`): the Software & AI products list. |
 | Dudus | `ericgitonga.com/dudus` | Kenya's tiniest wildlife. This page (`dudus.html`) has an album-grid gallery of Eric's own dudu photographs, plus links out to the two real separate deployments: [dudus-app](https://dudus.ericgitonga.com) (identification companion) and [dudu-merchandise](https://shop.dudus.ericgitonga.com) (shop, nested under it as `shop.dudus.ericgitonga.com`). |
 
 Card names are each a term of art specific to their craft, not a generic label —
