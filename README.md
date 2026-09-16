@@ -8,7 +8,7 @@ order:
 | Daguerreotypes | `ericgitonga.com/daguerreotypes` | Photography — landscapes, portraits, documentary moments. Live content (`daguerreotypes.html`): an album-grid gallery sourced from Angry Hosting (see Media section below). |
 | Daubs | `ericgitonga.com/daubs` | Drawings, watercolours, and marks made for their own sake. Placeholder page (`daubs.html`) for now. |
 | Diffs | `ericgitonga.com/diffs` | Software and systems — Eric's technical practice. Live content (`diffs.html`): the Software & AI products list. |
-| Dudus | `ericgitonga.com/dudus` | Kenya's tiniest wildlife. This page (`dudus.html`) is three image-led cards, all opening in the same window: Dutraits (`/dudus/dutraits`, the album-grid gallery of Eric's own dudu photographs), Dudepth ([dudus-app](https://dudus.ericgitonga.com), the identification companion), and Dumerch ([dudu-merchandise](https://shop.ericgitonga.com/prints), the Dudu Prints section of the shop — the shop itself is independent of any one plate, see the navbar's own Shop link below). |
+| Dudus | `ericgitonga.com/dudus` | Kenya's tiniest wildlife. This page (`dudus.html`) is two image-led cards, both opening in the same window: Dutraits (`/dudus/dutraits`, the album-grid gallery of Eric's own dudu photographs) and Dudepth ([dudus-app](https://dudus.ericgitonga.com), the identification companion). A third card, Dumerch, linked to the shop from here until the shop became independent of any one plate — it's reachable via the navbar's own Shop link now instead. |
 
 Card names are each a term of art specific to their craft, not a generic label —
 Daguerreotypes (the historic photographic process), Daubs (the painter's own word for informal
@@ -16,7 +16,7 @@ work), Diffs (the developer's word for comparing versions), Dudus (Kenyan slang 
 
 Every card is a path on this one repo. Dudus is the only one whose landing page is itself just a
 switchboard — its Dutraits card leads to a nested page in this same repo (the album gallery),
-while Dudepth and Dumerch link onward to the two real external deployments.
+while Dudepth links onward to its own real external deployment.
 
 Daguerreotypes, Daubs, and Diffs are paths on this one static site, not subdomains — they're just
 pages in this repo, not separate deployments, so there's no real infrastructure behind a
