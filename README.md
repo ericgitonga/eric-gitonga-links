@@ -8,7 +8,7 @@ order:
 | Daguerreotypes | `ericgitonga.com/daguerreotypes` | Photography — landscapes, portraits, documentary moments. Live content (`daguerreotypes.html`): an album-grid gallery sourced from Angry Hosting (see Media section below). |
 | Daubs | `ericgitonga.com/daubs` | Drawings, watercolours, and marks made for their own sake. Placeholder page (`daubs.html`) for now. |
 | Diffs | `ericgitonga.com/diffs` | Software and systems — Eric's technical practice. Live content (`diffs.html`): the Software & AI products list. |
-| Dudus | `ericgitonga.com/dudus` | Kenya's tiniest wildlife. This page (`dudus.html`) is three image-led cards, all opening in the same window: Dutraits (`/dudus/dutraits`, the album-grid gallery of Eric's own dudu photographs), Dudepth ([dudus-app](https://dudus.ericgitonga.com), the identification companion), and Dumerch ([dudu-merchandise](https://shop.dudus.ericgitonga.com), the shop, nested under it as `shop.dudus.ericgitonga.com`). |
+| Dudus | `ericgitonga.com/dudus` | Kenya's tiniest wildlife. This page (`dudus.html`) is three image-led cards, all opening in the same window: Dutraits (`/dudus/dutraits`, the album-grid gallery of Eric's own dudu photographs), Dudepth ([dudus-app](https://dudus.ericgitonga.com), the identification companion), and Dumerch ([dudu-merchandise](https://shop.ericgitonga.com/prints), the Dudu Prints section of the shop — the shop itself is independent of any one plate, see the navbar's own Shop link below). |
 
 Card names are each a term of art specific to their craft, not a generic label —
 Daguerreotypes (the historic photographic process), Daubs (the painter's own word for informal
@@ -34,10 +34,12 @@ so `/diffs` serves `diffs.html` (etc.) without the extension — no framework/ro
 
 Every page shares one navbar layout: "ERIC GITONGA" (linked to `/`, except on the hub itself)
 on the left, the four plates centred (the current page's own plate shown as plain text, not a
-link), and Bio/Blog/Contact on the right. Bio and Contact are modal dialogs — their markup, styles,
-and the Contact form's logic only exist on `index.html`; every other page's Bio/Contact links
-point at `/#bio-modal` / `/#contact-modal`, and a small script on `index.html` opens the matching
-dialog on load if that hash is present (and clears it again when the dialog closes), rather than
+link), and Bio/Blog/Shop/Contact on the right. Shop links out to `shop.ericgitonga.com`
+(dudu-merchandise — independent of any one plate, per that repo's own issue #119) rather than a
+path on this site. Bio and Contact are modal dialogs — their markup, styles, and the Contact
+form's logic only exist on `index.html`; every other page's Bio/Contact links point at
+`/#bio-modal` / `/#contact-modal`, and a small script on `index.html` opens the matching dialog
+on load if that hash is present (and clears it again when the dialog closes), rather than
 duplicating the modal machinery onto all seven pages. Blog is a real page (`/blog`). The Contact
 modal's form POSTs to `/api/contact` (a Vercel serverless function using Resend's REST API
 directly, no SDK) instead of a `mailto:` link, so a visitor's message reaches `gitonga@gmail.com`
