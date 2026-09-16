@@ -89,8 +89,14 @@ pages read from, so client code never needs to know the actual Blob URL.
 `assets/gallery.js` is a shared script (the one exception to this repo's usual per-page
 duplication — real interactive logic, not boilerplate) that both `daguerreotypes.html` and
 `dudus/dutraits.html` load. It fetches `/api/media-manifest`, renders an album grid, and opens a
-`<dialog>` modal image viewer (previous/next arrows, ←/→ keyboard nav, click-outside/Esc to close)
-when an album is chosen — same modal pattern as the hub page's Bio/Contact dialogs. Each page calls
+`<dialog>` modal image viewer (previous/next arrows, ←/→ keyboard nav, click-outside/Esc to close,
+a fullscreen toggle via the Fullscreen API, and a thumbnail strip along the bottom to jump
+directly to a specific photo) when an album is chosen — same modal pattern as the hub page's
+Bio/Contact dialogs. The fullscreen toggle targets the `<figure>` inside the dialog, not the
+`<dialog>` itself — Chromium rejects `requestFullscreen()` called directly on a `<dialog>` opened
+via `showModal()` ("Dialog elements are invalid"), and every close/nav/thumbnail control lives
+inside that same `<figure>` so it stays usable once fullscreen is entered, rather than being
+visually stranded behind it. Each page calls
 `initGallery('daguerreotypes')` or `initGallery('dudus')` to wire itself up (the manifest key is
 still `dudus` — only the page it renders on moved, not the plate it belongs to).
 
